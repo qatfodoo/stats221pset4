@@ -4,7 +4,7 @@
 #SBATCH -e ./dump/q4task.err #Standard error
 #SBATCH -p general #Partition
 #SBATCH -t 01:00:00 #Running time of 1 hours.
-#SBATCH --mem-per-cpu 1000 #Memory request
+#SBATCH --mem-per-cpu 10000 #Memory request
 #SBATCH -n 1 #Number of cores
 #SBATCH -N 1 #All cores on one machine
 #SBATCH --mail-user=kuatefodouop@fas.harvard.edu

@@ -116,10 +116,15 @@ mcmc.mh <- function(y, mcmc.niters=1e4, max_x=100) {
     N.new <- rgeom.trunc(max(y), 1 / N.old)
     theta.new <- S.exp / N.new
     # 3. Ratio
-    mh.ratio = min(0, log.posterior(N.new, theta.new, y) * dgeom(N.old, 1 / N.new)
-                   * dbeta((N.old * theta.old) / N.new, 1 + S, 1 + (n * N.new - S)) - 
-                     log.posterior(N.old, theta.old, y) * dgeom(N.new, 1 / N.old)
-                   * dbeta((N.new * theta.new) / N.old, 1 + S, 1 + (n * N.old - S)))
+    print(N.old)
+#     mh.ratio = min(0, log.posterior(N.new, theta.new, y) + dgeom(N.old, 1 / N.new, log=T) +
+#                      dbeta((N.old * theta.old) / N.new, 1 + S, 1 + (n * N.new - S), log=T) - 
+#                      log.posterior(N.old, theta.old, y) - dgeom(N.new, 1 / N.old, log=T) -
+#                      dbeta((N.new * theta.new) / N.old, 1 + S, 1 + (n * N.old - S), log=T))
+    mh.ratio = min(0, log.posterior(N.new, theta.new, y) + dgeom(N.new, 1 / N.old, log=T) +
+                     dbeta((N.new * theta.new) / N.old, 1 + S, 1 + (n * N.old - S), log=T) - 
+                     log.posterior(N.new, theta.new, y) - dgeom(N.old, 1 / N.new, log=T) -
+                     dbeta((N.old * theta.old) / N.new, 1 + S, 1 + (n * N.new - S), log=T))
     if(is.finite(mh.ratio) & runif(1) < exp(mh.ratio)) {
       # Accept 
       mcmc.chain[i, ] <- c(N.new, theta.new)
