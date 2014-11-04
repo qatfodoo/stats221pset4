@@ -3,7 +3,7 @@ source("mcmc_raft.R")
 ## question 1.4 on Odyssey
 
 data.names <- c("impala", "waterbuck")
-N.it <- 1e8
+N.it <- 1e5
 
 # 10 iterations of each chain, save plot and store chains
 if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
@@ -24,7 +24,7 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
   
   png(filename=paste("./out/", data.name, "_chain", chain.id, "_postcont.png", sep=""))
   max_x <- ifelse(data.id == 1, 120, 350)
-  chain <- mcmc.mh(data, mcmc.niters=N.it, max_x)
+  chain <- mcmc.mh2step(data, mcmc.niters=N.it, max_x)
   dev.off()
   save("chain", file=paste("./out/", data.name, "_chain", chain.id, ".RData", sep=""))
   

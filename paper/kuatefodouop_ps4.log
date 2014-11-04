@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.21)  2 NOV 2014 20:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.21)  4 NOV 2014 17:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -720,95 +720,108 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--190
 
  []
 
-[2]
-LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 216.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 216.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 195.
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 235.
-LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 237.
 
-<./img/2a_updates.png, id=35, 584.1825pt x 392.46625pt>
+Underfull \hbox (badness 10000) in paragraph at lines 200--202
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
+
+ []
+
+[2]
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 230.
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 249.
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 251.
+ <./img/2a_updates.png, id=38, 584.1825pt x 392.46625pt>
 File: ./img/2a_updates.png Graphic file (type png)
 
 <use ./img/2a_updates.png>
-Package pdftex.def Info: ./img/2a_updates.png used on input line 241.
+Package pdftex.def Info: ./img/2a_updates.png used on input line 255.
 (pdftex.def)             Requested size: 321.30136pt x 215.85709pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 242.
+(caption)                particular \caption on input line 256.
 See the caption package documentation for explanation.
 
-<./img/2b_sgd_updates.png, id=36, 584.1825pt x 392.46625pt>
+[3] <./img/2b_sgd_updates.png, id=47, 584.1825pt x 392.46625pt>
 File: ./img/2b_sgd_updates.png Graphic file (type png)
 
 <use ./img/2b_sgd_updates.png>
-Package pdftex.def Info: ./img/2b_sgd_updates.png used on input line 250.
+Package pdftex.def Info: ./img/2b_sgd_updates.png used on input line 264.
 (pdftex.def)             Requested size: 321.30136pt x 215.85709pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 251.
+(caption)                particular \caption on input line 265.
 See the caption package documentation for explanation.
 
-[3 <./img/2a_updates.png (PNG copy)>]
-<./img/2b_sgd_upd_10e4.png, id=45, 584.1825pt x 392.46625pt>
+[4 <./img/2a_updates.png (PNG copy)> <./img/2b_sgd_updates.png (PNG copy)>]
+<./img/2b_sgd_upd_10e4.png, id=54, 584.1825pt x 392.46625pt>
 File: ./img/2b_sgd_upd_10e4.png Graphic file (type png)
 
 <use ./img/2b_sgd_upd_10e4.png>
-Package pdftex.def Info: ./img/2b_sgd_upd_10e4.png used on input line 256.
+Package pdftex.def Info: ./img/2b_sgd_upd_10e4.png used on input line 270.
 (pdftex.def)             Requested size: 321.30136pt x 215.85709pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 257.
+(caption)                particular \caption on input line 271.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 266.
-[4 <./img/2b_sgd_updates.png (PNG copy)> <./img/2b_sgd_upd_10e4.png (PNG copy)>
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 266.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 280.
+[5 <./img/2b_sgd_upd_10e4.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 280.
  (./kuatefodouop_ps4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 266.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 266.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 280.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 280.
 Package rerunfilecheck Info: File `kuatefodouop_ps4.out' has not changed.
 (rerunfilecheck)             Checksum: 0A0C46CE73697D498561761C907E4D69;195.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 266.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 280.
  ) 
 Here is how much of TeX's memory you used:
- 12222 strings out of 495031
- 184603 string characters out of 6181531
+ 12245 strings out of 495031
+ 184808 string characters out of 6181531
  433840 words of memory out of 5000000
- 15016 multiletter control sequences out of 15000+600000
- 75925 words of font info for 238 fonts, out of 8000000 for 9000
+ 15018 multiletter control sequences out of 15000+600000
+ 77130 words of font info for 251 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  36i,14n,43p,580b,461s stack positions out of 5000i,500n,10000p,200000b,80000s
- </tmp/texfonts/pk/ljfour/jknappen/ec/ecit0900.600pk>{/usr/share/texlive/texm
-f-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/font
-s/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
-palatino/uplri8a.pfb>
-Output written on kuatefodouop_ps4.pdf (4 pages, 256304 bytes).
+ </tmp/texfonts/pk/ljfour/jknappen/ec/ecit0900.600pk> </tmp/texfonts/pk/ljfou
+r/jknappen/ec/ectt1000.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/bas
+e/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/fpl/fplrc8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pa
+latino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on kuatefodouop_ps4.pdf (5 pages, 264483 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
- 54824 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 142 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 500000)
+ 55336 words of extra memory for PDF output out of 61914 (max. 10000000)
 
