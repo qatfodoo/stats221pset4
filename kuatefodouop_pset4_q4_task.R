@@ -3,7 +3,7 @@ source("mcmc_raft.R")
 ## question 1.4 on Odyssey
 
 data.names <- c("impala", "waterbuck")
-N.it <- 1e8
+N.it <- 1e5
 
 # 10 iterations of each chain, save plot and store chains
 if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
