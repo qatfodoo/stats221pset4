@@ -190,7 +190,21 @@ Hence our information matrix is not invertible. This is due to the fact that our
 
 
 \vspace{.2 in}
-\textit{question 1.4}
+\textit{question 1.4} We try several implementation of MCMC, diagnostic plots of which are documented in appendix:
+\begin{enumerate}
+\item \texttt{mcmc.mh2step}: Samples first $\lambda$ from its posterior distribution, sample $\theta$ from its posterior and derives $\mu$ from it. From $\mu$ sample $N \sim Poiss(\mu)$, truncated to be more tha $y_{max}$.
+\item \texttt{mcmc.mh\_Sexp}: Sample $E[S] = N \* \theta$ as a scaled beta using last value of $N$, and sample $N$ using a truncated geomtric.
+\item \texttt{mcmc.mdhir}: Samples N from truncated geometric, $\theta$ from its posterior beta distribution.
+\end{enumerate}
+
+Our first algorithm drives high autocorrelation, and fails the halfwidth mean test of convergence (on both the \texttt{impala} and \texttt{waterbuck} data set). It also has quite value of rubin-
+gelman test (from 1.2 to 2.3), and is not very stable. Acceptance rate is around 30\%.\\
+
+The second one led to divergence in N for ununderstood reasons. There might be an issue with the acceptance rate definition, but it was not resolved. This algorithm had to be abandonned for this reason.\\
+
+The third algorithm also leads to high correlation and high values of gelman test (values higher than 2), and has a small acceptance rate at around 10\%.\\
+
+No stable algorithm could be set up. To privilege high acceptance rate and better results on the tests (as well as better visual posterior distribution), we chose to implement the first algorithm on Odyssey to produce the plots.
 
 
 \vspace{.2 in}

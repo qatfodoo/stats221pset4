@@ -68,6 +68,16 @@ rgeom.trunc <- function(lower.bound, p) {
   return(x)
 }
 
+rgamma.trunc <- function(lower.bound, s, r) {
+  # Sample from truncated gamma. 
+  x <- lower.bound - 1
+  while(x < lower.bound) {
+    x = rgamma(1, shape=s, rate=r)
+  }
+  return(x)
+}
+
+
 plot.chain <- function(mcmc.chain, max_x=100) {
   mcmc.niters = nrow(mcmc.chain)
   burnin = 0.1 * mcmc.niters
@@ -97,8 +107,58 @@ mcmc.gibbs <- function(y, mcmc.niters=1e4) {
   return(mcmc.chain)
 }
 
+
+# Chain samples from uniform theta and N (range of 20 around N.old)
+mcmc.mhdir <- function(y, mcmc.niters=1e4, max_x=100) {
+  # Complete with MH.
+  S = sum(y)
+  n = length(y)
+  mcmc.chain <- matrix(0, nrow=mcmc.niters, ncol=2)
+  mcmc.chain[1, ] <- c(max(y), 0.1)
+  nacc <- 0
+  for(i in 2:mcmc.niters) {
+    # 1. Current state
+    N.old = mcmc.chain[i-1, 1]
+    theta.old = mcmc.chain[i-1, 2]
+    # 2. Propose new state
+    # Draw N proposal
+    #N.new <- sample(max(max(y), (N.old - 5)):(max(max(y) + 5, N.old + 5)), 1)
+    N.new <- rgeom.trunc(max(y), 1 / N.old)
+    #theta.new <- runif(1, min=0, max=1)
+    theta.new <- rbeta(1, 1 + S, 1 + (n * N.old - S))
+    # 3. Ratio
+    
+    mh.ratio = min(0, log.posterior(N.new, theta.new, y) + dgeom(N.old, 1 / N.new, log=T) + 
+                     dbeta(theta.old, 1 + S, 1 + (n * N.new - S), log=T) -
+                     log.posterior(N.old, theta.old, y) - dgeom(N.new, 1 / N.old, log=T) -
+                     dbeta(theta.new, 1 + S, 1 + (n * N.old - S), log=T))
+    
+#     mh.ratio = min(0, log.posterior(N.new, theta.new, y) + log(ProbUnifN(max(y), N.new)) - 
+#                      log.posterior(N.old, theta.old, y) - log(ProbUnifN(max(y), N.old)))
+    
+    if(runif(1) < exp(mh.ratio)) {
+      # Accept 
+      mcmc.chain[i, ] <- c(N.new, theta.new)
+      nacc <- nacc + 1
+    } else {
+      mcmc.chain[i, ] <- c(N.old, theta.old)
+    }
+  }
+  # Cut the burnin period.
+  print(sprintf("Acceptance ratio %.2f%%", 100 * nacc / mcmc.niters))
+  plot.chain(mcmc.chain, max_x)
+  return(mcmc.chain)
+}
+
+# Compute probab of the truncated uniform centered at N
+ProbUnifN <- function(y.max, N) {
+  n.poss <- 5 + N - max(y.max, N - 5) + 1  # numb of potential samples
+  return(1 / n.poss)
+}
+
 # Chain samples S.exp = N * theta, and then N
-mcmc.mh <- function(y, mcmc.niters=1e4, max_x=100) {
+## Explodes towards large N for unknown reasons
+mcmc.mh_Sexp <- function(y, mcmc.niters=1e4, max_x=100) {
   # Complete with MH.
   S = sum(y)
   n = length(y)
@@ -116,15 +176,12 @@ mcmc.mh <- function(y, mcmc.niters=1e4, max_x=100) {
     N.new <- rgeom.trunc(max(y), 1 / N.old)
     theta.new <- S.exp / N.new
     # 3. Ratio
-    print(N.old)
-#     mh.ratio = min(0, log.posterior(N.new, theta.new, y) + dgeom(N.old, 1 / N.new, log=T) +
-#                      dbeta((N.old * theta.old) / N.new, 1 + S, 1 + (n * N.new - S), log=T) - 
-#                      log.posterior(N.old, theta.old, y) - dgeom(N.new, 1 / N.old, log=T) -
-#                      dbeta((N.new * theta.new) / N.old, 1 + S, 1 + (n * N.old - S), log=T))
-    mh.ratio = min(0, log.posterior(N.new, theta.new, y) + dgeom(N.new, 1 / N.old, log=T) +
-                     dbeta((N.new * theta.new) / N.old, 1 + S, 1 + (n * N.old - S), log=T) - 
-                     log.posterior(N.new, theta.new, y) - dgeom(N.old, 1 / N.new, log=T) -
-                     dbeta((N.old * theta.old) / N.new, 1 + S, 1 + (n * N.new - S), log=T))
+    
+    mh.ratio = min(0, log.posterior(N.new, theta.new, y) + dgeom(N.old, 1 / N.new, log=T) +
+                     dbeta((N.old * theta.old) / N.new, 1 + S, 1 + (n * N.new - S), log=T) - 
+                     log.posterior(N.old, theta.old, y) - dgeom(N.new, 1 / N.old, log=T) -
+                     dbeta((N.new * theta.new) / N.old, 1 + S, 1 + (n * N.old - S), log=T))
+
     if(is.finite(mh.ratio) & runif(1) < exp(mh.ratio)) {
       # Accept 
       mcmc.chain[i, ] <- c(N.new, theta.new)
@@ -140,7 +197,7 @@ mcmc.mh <- function(y, mcmc.niters=1e4, max_x=100) {
 }
 
 # Chain samples first mu and theta, and then N
-mcmc.mh2step <- function(y, mcmc.niters=1e4) {
+mcmc.mh2step <- function(y, mcmc.niters=1e4, max_x=100) {
   # Complete with MH.
   S = sum(y)
   n = length(y)
@@ -153,14 +210,14 @@ mcmc.mh2step <- function(y, mcmc.niters=1e4) {
     N.old = mcmc.chain[i-1, 1]
     theta.old = mcmc.chain[i-1, 2]
     # 2. Propose new state
-    #   Respect symmetry in (mu, theta)
-    theta.new = runif(1, min=0, max=1)
+    theta.new = rbeta(1, 1 + S, 1 + (n * N.old - S))
     mu.new = lambda / theta.new
     # Draw N proposal
     N.new <- rpois(1, mu.new)
     # 3. Ratio
-    mh.ratio = min(0, log.posterior(N.new, theta.new, y)  - 
-                     log.posterior(N.old, theta.old, y))
+    mh.ratio = min(0, log.posterior(N.new, theta.new, y) + dbeta(theta.old, 1 + S, 1 + (n * N.new - S), log=T) - 
+                     log.posterior(N.old, theta.old, y) - dbeta(theta.new, 1 + S, 1 + (n * N.old - S), log=T))
+    # P(N | theta) is the ssymmetric for old and new (lambda has same sampler)
     if(N.new > max(y) & runif(1) < exp(mh.ratio)) {
       # Accept 
       mcmc.chain[i, ] <- c(N.new, theta.new)
@@ -171,7 +228,7 @@ mcmc.mh2step <- function(y, mcmc.niters=1e4) {
   }
   # Cut the burnin period.
   print(sprintf("Acceptance ratio %.2f%%", 100 * nacc / mcmc.niters))
-  plot.chain(mcmc.chain)
+  plot.chain(mcmc.chain, max_x)
   return(mcmc.chain)
 }
 
