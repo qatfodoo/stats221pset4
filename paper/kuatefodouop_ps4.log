@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.21)  4 NOV 2014 17:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.8.21)  4 NOV 2014 19:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -730,80 +730,136 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--202
+Underfull \hbox (badness 10000) in paragraph at lines 201--203
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--206
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+ []
+
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 230.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 233.
+[3] [4]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 249.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 265.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 251.
- <./img/2a_updates.png, id=38, 584.1825pt x 392.46625pt>
-File: ./img/2a_updates.png Graphic file (type png)
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 267.
+ <./img/imp_logpost.png, id=56, 652.4375pt x 421.575pt>
+File: ./img/imp_logpost.png Graphic file (type png)
 
-<use ./img/2a_updates.png>
-Package pdftex.def Info: ./img/2a_updates.png used on input line 255.
-(pdftex.def)             Requested size: 321.30136pt x 215.85709pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 256.
-See the caption package documentation for explanation.
-
-[3] <./img/2b_sgd_updates.png, id=47, 584.1825pt x 392.46625pt>
-File: ./img/2b_sgd_updates.png Graphic file (type png)
-
-<use ./img/2b_sgd_updates.png>
-Package pdftex.def Info: ./img/2b_sgd_updates.png used on input line 264.
-(pdftex.def)             Requested size: 321.30136pt x 215.85709pt.
+<use ./img/imp_logpost.png>
+Package pdftex.def Info: ./img/imp_logpost.png used on input line 271.
+(pdftex.def)             Requested size: 358.84172pt x 231.86696pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 265.
+(caption)                particular \caption on input line 272.
 See the caption package documentation for explanation.
 
-[4 <./img/2a_updates.png (PNG copy)> <./img/2b_sgd_updates.png (PNG copy)>]
-<./img/2b_sgd_upd_10e4.png, id=54, 584.1825pt x 392.46625pt>
-File: ./img/2b_sgd_upd_10e4.png Graphic file (type png)
+<./img/wat_logpost.png, id=57, 652.4375pt x 421.575pt>
+File: ./img/wat_logpost.png Graphic file (type png)
 
-<use ./img/2b_sgd_upd_10e4.png>
-Package pdftex.def Info: ./img/2b_sgd_upd_10e4.png used on input line 270.
-(pdftex.def)             Requested size: 321.30136pt x 215.85709pt.
+<use ./img/wat_logpost.png>
+Package pdftex.def Info: ./img/wat_logpost.png used on input line 277.
+(pdftex.def)             Requested size: 358.84172pt x 231.86696pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 271.
+(caption)                particular \caption on input line 278.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 280.
-[5 <./img/2b_sgd_upd_10e4.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 280.
+<./img/imp_2step_traceplot.png, id=58, 584.1825pt x 393.47pt>
+File: ./img/imp_2step_traceplot.png Graphic file (type png)
+
+<use ./img/imp_2step_traceplot.png>
+Package pdftex.def Info: ./img/imp_2step_traceplot.png used on input line 285.
+(pdftex.def)             Requested size: 204.46693pt x 137.71655pt.
+
+<./img/imp_2step_autocorr.png, id=59, 584.1825pt x 393.47pt>
+File: ./img/imp_2step_autocorr.png Graphic file (type png)
+
+<use ./img/imp_2step_autocorr.png>
+Package pdftex.def Info: ./img/imp_2step_autocorr.png used on input line 286.
+(pdftex.def)             Requested size: 204.46693pt x 137.71655pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 287.
+See the caption package documentation for explanation.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5 <./img/imp_logpost.png (PNG copy)> <./img/wat_logpost.png (PNG copy)>]
+<./img/imp_dir_trace.png, id=66, 584.1825pt x 393.47pt>
+File: ./img/imp_dir_trace.png Graphic file (type png)
+
+<use ./img/imp_dir_trace.png>
+Package pdftex.def Info: ./img/imp_dir_trace.png used on input line 292.
+(pdftex.def)             Requested size: 204.46693pt x 137.71655pt.
+
+<./img/imp_dir_autocorr.png, id=67, 584.1825pt x 393.47pt>
+File: ./img/imp_dir_autocorr.png Graphic file (type png)
+
+<use ./img/imp_dir_autocorr.png>
+Package pdftex.def Info: ./img/imp_dir_autocorr.png used on input line 293.
+(pdftex.def)             Requested size: 204.46693pt x 137.71655pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 294.
+See the caption package documentation for explanation.
+
+<./img/imp_logonly_trace.png, id=68, 584.1825pt x 393.47pt>
+File: ./img/imp_logonly_trace.png Graphic file (type png)
+
+<use ./img/imp_logonly_trace.png>
+Package pdftex.def Info: ./img/imp_logonly_trace.png used on input line 299.
+(pdftex.def)             Requested size: 204.46693pt x 137.71655pt.
+
+<./img/imp_logonly_autocorr.png, id=69, 584.1825pt x 393.47pt>
+File: ./img/imp_logonly_autocorr.png Graphic file (type png)
+
+<use ./img/imp_logonly_autocorr.png>
+Package pdftex.def Info: ./img/imp_logonly_autocorr.png used on input line 300.
+
+(pdftex.def)             Requested size: 204.46693pt x 137.71655pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 301.
+See the caption package documentation for explanation.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
+[6 <./img/imp_2step_traceplot.png> <./img/imp_2step_autocorr.png> <./img/imp_di
+r_trace.png> <./img/imp_dir_autocorr.png> <./img/imp_logonly_trace.png> <./img/
+imp_logonly_autocorr.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
  (./kuatefodouop_ps4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 280.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 280.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
 Package rerunfilecheck Info: File `kuatefodouop_ps4.out' has not changed.
-(rerunfilecheck)             Checksum: 0A0C46CE73697D498561761C907E4D69;195.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 280.
+(rerunfilecheck)             Checksum: BADFB4AD2B64F1D284311459D087C9C7;273.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 313.
  ) 
 Here is how much of TeX's memory you used:
- 12245 strings out of 495031
- 184808 string characters out of 6181531
+ 12283 strings out of 495031
+ 185681 string characters out of 6181531
  433840 words of memory out of 5000000
- 15018 multiletter control sequences out of 15000+600000
- 77130 words of font info for 251 fonts, out of 8000000 for 9000
+ 15039 multiletter control sequences out of 15000+600000
+ 76624 words of font info for 255 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  36i,14n,43p,580b,461s stack positions out of 5000i,500n,10000p,200000b,80000s
  </tmp/texfonts/pk/ljfour/jknappen/ec/ecit0900.600pk> </tmp/texfonts/pk/ljfou
@@ -818,10 +874,10 @@ s/type1/public/fpl/fplrc8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pa
 latino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on kuatefodouop_ps4.pdf (5 pages, 264483 bytes).
+Output written on kuatefodouop_ps4.pdf (6 pages, 333135 bytes).
 PDF statistics:
- 142 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
- 16 named destinations out of 1000 (max. 500000)
- 55336 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 182 PDF objects out of 1000 (max. 8388607)
+ 98 compressed objects within 1 object stream
+ 22 named destinations out of 1000 (max. 500000)
+ 55369 words of extra memory for PDF output out of 61914 (max. 10000000)
 

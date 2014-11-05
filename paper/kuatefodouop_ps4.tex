@@ -195,6 +195,7 @@ Hence our information matrix is not invertible. This is due to the fact that our
 \item \texttt{mcmc.mh2step}: Samples first $\lambda$ from its posterior distribution, sample $\theta$ from its posterior and derives $\mu$ from it. From $\mu$ sample $N \sim Poiss(\mu)$, truncated to be more tha $y_{max}$.
 \item \texttt{mcmc.mh\_Sexp}: Sample $E[S] = N \* \theta$ as a scaled beta using last value of $N$, and sample $N$ using a truncated geomtric.
 \item \texttt{mcmc.mdhir}: Samples N from truncated geometric, $\theta$ from its posterior beta distribution.
+\item \texttt{mcmc.md\_Sexplogonly}: Samples the same way as \texttt{mcmc.mh\_Sexp}, but only use the log-likelihood ratio in the acceptance ratio (does not take into account the non-symmetry of the sampling scheme). Even though it seemed theoretically unsound, it was tried and implemented as it gave way better results than the other algorithms.
 \end{enumerate}
 
 Our first algorithm drives high autocorrelation, and fails the halfwidth mean test of convergence (on both the \texttt{impala} and \texttt{waterbuck} data set). It also has quite value of rubin-
@@ -204,7 +205,9 @@ The second one led to divergence in N for ununderstood reasons. There might be a
 
 The third algorithm also leads to high correlation and high values of gelman test (values higher than 2), and has a small acceptance rate at around 10\%.\\
 
-No stable algorithm could be set up. To privilege high acceptance rate and better results on the tests (as well as better visual posterior distribution), we chose to implement the first algorithm on Odyssey to produce the plots.
+The fourth variant of the second gives way better results. Acceptance rate is around 60\% (good), it has highly decreasing autocorrelation, passes Heidelberg and Halfwidth Mean tests, and produces a rubin-gelman score of 1.01 and 1.00. Our only concern using this method is in the seemingly wrongly defined acceptance ratio.\\
+
+No stable and seemingly theoretically valid algorithm could be set up. We chose to implement the first (high acceptance rate and valid acceptance rate formula) and the fourth algorithm (gives the best results) on Odyssey to produce the plots.
 
 
 \vspace{.2 in}
@@ -220,7 +223,7 @@ p(N | y) & \propto \frac{1}{N} \* \left[ \prod_{i = 1}^{n} C_{N}^{y_i} \right] \
 & = \frac{1}{N} \* \left[ \prod_{i = 1}^{n} C_{N}^{y_i} \right] \* \mathcal{B} (1 + S, 1 + n \* N - S) \quad (1)\\
 \end{align*}
 
-We compute the normalizing constants of (1) for both datasets in table ?,
+We compute the normalizing constants of (1) for both datasets in table 1,
 \begin{align*}
 K = \left( \sum_{N = y_{max}}^{+ \infty} \frac{1}{N} \* \left[ \prod_{i = 1}^{n} C_{N}^{y_i} \right] \* \mathcal{B} (1 + S, 1 + n \* N - S) \right)^{-1}
 \end{align*}
@@ -239,37 +242,67 @@ waterbuck & 525394839 & 1\\
 \end{tabular}
 \end{table}
 
-\textit{question 1.6}
+\textit{question 1.6} We compute the posterior probability $P(N > 100 | y)$ using the normalized distribution computed in \textit{1.5}, and compare to the estimates obtained with our 10 MCMC draws per data set. Results are displayed in table 2.
+
+\begin{table}[H]
+\caption{$P(N > 100 | y)$ analytically and from MCMC.}
+\centering
+\begin{tabular}{llr}
+\toprule\
+Data Set & Analytically & MCMC \\
+\midrule
+impala & 0.33 & 1 \\
+waterbuck & 0.92 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 %----------------------------------------------------------------------------------------
 %	Appendix
 %----------------------------------------------------------------------------------------
-
+\newpage
 \appendix
 \section{Figures}
 
-\subsection{SGD methods on Normal model}
+\subsection{Posterior log-likelihood plots}
 
 \begingroup
 \centering
-\includegraphics[scale=0.55]{./img/2a_updates.png}
-\captionof{figure}{Excess risk for different update methods. SGD and Implicit methods exposes a very unstable behaviors. General relative behaviors of methods are nonetheless reproduced compared to Xu. Excess risk and trainining size t on $log_{10}$ scale.}
-\endgroup
-
-
-\subsection{SGD methods on regression}
-
-\begingroup
-\centering
-\includegraphics[scale=0.55]{./img/2b_sgd_updates.png}
-\captionof{figure}{Excess risk for different update methods. Like in Xu, SGD starts with better performance than ASGD but eventually performs worse for high training size (Implicit does slightly better than SGD). Batch is doing better overall. Excess risk and trainining size t on $log_{10}$ scale.}
+\includegraphics[scale=0.55]{./img/imp_logpost.png}
+\captionof{figure}{Posterior log-likelihood plot of $(N, \theta)$ for the \texttt{impala} dataset.}
 \endgroup
 
 \begingroup
 \centering
-\includegraphics[scale=0.55]{./img/2b_sgd_upd_10e4.png}
-\captionof{figure}{Excess risk zoom on training size superior to $10^4$.}
+\includegraphics[scale=0.55]{./img/wat_logpost.png}
+\captionof{figure}{Posterior log-likelihood plot of $(N, \theta)$ for the \texttt{waterbuck} dataset.}
 \endgroup
+
+\subsection{MCMC algorithms diagnostics}
+
+\begingroup
+\centering
+\includegraphics[scale=0.35]{./img/imp_2step_traceplot.png}
+\includegraphics[scale=0.35]{./img/imp_2step_autocorr.png}
+\captionof{figure}{Trace and autocorrelation plots for \texttt{mcmc.mh2step} (\texttt{impala} data set). Autocorrelation remains very high even after consequent lag.}
+\endgroup
+
+\begingroup
+\centering
+\includegraphics[scale=0.35]{./img/imp_dir_trace.png}
+\includegraphics[scale=0.35]{./img/imp_dir_autocorr.png}
+\captionof{figure}{Trace and autocorrelation plots for \texttt{mcmc.mhdir} (\texttt{impala} data set). Autocorrelation is even higher.}
+\endgroup
+
+\begingroup
+\centering
+\includegraphics[scale=0.35]{./img/imp_logonly_trace.png}
+\includegraphics[scale=0.35]{./img/imp_logonly_autocorr.png}
+\captionof{figure}{Trace and autocorrelation plots for \texttt{mcmc.mh\_Sexplongly} (\texttt{impala} data set). Autocorrelation decreases fast, and trace plot shows great exploration of the parameter space.}
+\endgroup
+
+\newpage
+\subsection{Posterior contour plots}
 
 
 

@@ -29,13 +29,25 @@ mcmc.diagnosis(wat.chain_Sexp)
 rubin.gelman(imp, mcmc.mh_Sexp)
 rubin.gelman(wat, mcmc.mh_Sexp)
 
-# Chain using 
-imp.chain <- mcmc.mhdir(imp)
-wat.chain <- mcmc.mhdir(wat, max_x=400)
+# Chain sampling S.exp = N * theta with wrong acceptance rate
+## (hides non-symmetry)
+imp.chain_Sexplogonly <- mcmc.mh_Sexplogonly(imp, max_x=200)
+wat.chain_Sexplogonly <- mcmc.mh_Sexplogonly(wat, max_x=600)
 
 ## Chain diagnosis
-mcmc.diagnosis(imp.chain)
-mcmc.diagnosis(wat.chain)
+mcmc.diagnosis(imp.chain_Sexplogonly)
+mcmc.diagnosis(wat.chain_Sexplogonly)
+## Chain rubin-gelman
+rubin.gelman(imp, mcmc.mh_Sexplogonly)
+rubin.gelman(wat, mcmc.mh_Sexplogonly)
+
+# Chain using direct geom and beta
+imp.chain_dir <- mcmc.mhdir(imp)
+wat.chain_dir <- mcmc.mhdir(wat, max_x=400)
+
+## Chain diagnosis
+mcmc.diagnosis(imp.chain_dir)
+mcmc.diagnosis(wat.chain_dir)
 ## Chain rubin-gelman
 rubin.gelman(imp, mcmc.mhdir)
 rubin.gelman(wat, mcmc.mhdir)
