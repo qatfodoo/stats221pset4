@@ -128,10 +128,10 @@ mcmc.mhdir <- function(y, mcmc.niters=1e4, max_x=100) {
     theta.new <- rbeta(1, 1 + S, 1 + (n * N.old - S))
     # 3. Ratio
     
-    mh.ratio = min(0, log.posterior(N.new, theta.new, y) + dgeom(N.old, 1 / N.new, log=T) + 
-                     dbeta(theta.old, 1 + S, 1 + (n * N.new - S), log=T) -
-                     log.posterior(N.old, theta.old, y) - dgeom(N.new, 1 / N.old, log=T) -
-                     dbeta(theta.new, 1 + S, 1 + (n * N.old - S), log=T))
+    mh.ratio = min(0, log.posterior(N.new, theta.new, y) - #+ dgeom(N.old, 1 / N.new, log=T) + 
+                     #dbeta(theta.old, 1 + S, 1 + (n * N.new - S), log=T) -
+                     log.posterior(N.old, theta.old, y)) #- dgeom(N.new, 1 / N.old, log=T) -
+                     #dbeta(theta.new, 1 + S, 1 + (n * N.old - S), log=T))
     
 #     mh.ratio = min(0, log.posterior(N.new, theta.new, y) + log(ProbUnifN(max(y), N.new)) - 
 #                      log.posterior(N.old, theta.old, y) - log(ProbUnifN(max(y), N.old)))
@@ -156,6 +156,45 @@ ProbUnifN <- function(y.max, N) {
   return(1 / n.poss)
 }
 
+
+# Chain samples S.exp = N * theta, and then N
+## But ignores non-symmetry of proposal
+mcmc.mh_Sexplogonly <- function(y, mcmc.niters=1e4, max_x=100) {
+  # Complete with MH.
+  S = sum(y)
+  n = length(y)
+  mcmc.chain <- matrix(0, nrow=mcmc.niters, ncol=2)
+  mcmc.chain[1, ] <- c(max(y), 0.1)
+  nacc <- 0
+  for(i in 2:mcmc.niters) {
+    # 1. Current state
+    N.old = mcmc.chain[i-1, 1]
+    theta.old = mcmc.chain[i-1, 2]
+    # 2. Propose new state
+    # Sample S from old N state
+    S.exp <- N.old * rbeta(1, 1 + S, 1 + (n * N.old - S))
+    # Draw N proposal
+    N.new <- rgeom.trunc(max(y), 1 / (N.old + 1))
+    theta.new <- S.exp / N.new
+    # 3. Ratio
+    
+    mh.ratio = min(0, log.posterior(N.new, theta.new, y) -
+                     log.posterior(N.old, theta.old, y))
+    
+    if(is.finite(mh.ratio) & runif(1) < exp(mh.ratio)) {
+      # Accept 
+      mcmc.chain[i, ] <- c(N.new, theta.new)
+      nacc <- nacc + 1
+    } else {
+      mcmc.chain[i, ] <- c(N.old, theta.old)
+    }
+  }
+  # Cut the burnin period.
+  print(sprintf("Acceptance ratio %.2f%%", 100 * nacc / mcmc.niters))
+  plot.chain(mcmc.chain, max_x)
+  return(mcmc.chain)
+}
+
 # Chain samples S.exp = N * theta, and then N
 ## Explodes towards large N for unknown reasons
 mcmc.mh_Sexp <- function(y, mcmc.niters=1e4, max_x=100) {
@@ -173,7 +212,7 @@ mcmc.mh_Sexp <- function(y, mcmc.niters=1e4, max_x=100) {
     # Sample S from old N state
     S.exp <- N.old * rbeta(1, 1 + S, 1 + (n * N.old - S))
     # Draw N proposal
-    N.new <- rgeom.trunc(max(y), 1 / N.old)
+    N.new <- rgeom.trunc(max(y), 1 / (N.old + 1))
     theta.new <- S.exp / N.new
     # 3. Ratio
     
